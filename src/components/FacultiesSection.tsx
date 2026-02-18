@@ -1,68 +1,63 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Briefcase, FlaskConical, BookOpen, Users } from "lucide-react";
+import {
+  BookOpen,
+  Briefcase,
+  FlaskConical,
+  Cog,
+  Waves,
+  Scale,
+  Users,
+} from "lucide-react";
 
 const faculties = [
-  {
-    icon: Briefcase,
-    name: "Faculty of Business & Economics",
-    desc: "Accounting, Finance, Economics, Management & Entrepreneurship",
-    color: "from-tmu-blue to-tmu-blue-light",
-  },
-  {
-    icon: FlaskConical,
-    name: "Faculty of Physical & Biological Sciences",
-    desc: "Mathematics, Computer Science, Physics, Chemistry & Biology",
-    color: "from-tmu-red to-tmu-gold",
-  },
-  {
-    icon: BookOpen,
-    name: "Faculty of Education & Social Sciences",
-    desc: "Education, Arts, Languages, Psychology & Social Work",
-    color: "from-tmu-gold to-tmu-red",
-  },
-  {
-    icon: Users,
-    name: "Faculty of Social Sciences",
-    desc: "Political Science, Sociology, Criminology & Public Administration",
-    color: "from-tmu-blue-light to-tmu-blue",
-  },
+  { icon: BookOpen, name: "Faculty of Education", color: "from-tmu-blue to-tmu-blue-light" },
+  { icon: Briefcase, name: "Faculty of Business and Economics", color: "from-tmu-gold to-tmu-red" },
+  { icon: FlaskConical, name: "Faculty of Physical and Biological Sciences", color: "from-tmu-blue-light to-tmu-blue" },
+  { icon: Cog, name: "Faculty of Engineering", color: "from-tmu-red to-tmu-gold" },
+  { icon: Waves, name: "Faculty of Blue Economy", color: "from-sky-500 to-tmu-blue" },
+  { icon: Scale, name: "CMG Argwings Kodhek Faculty of Law", color: "from-tmu-blue-dark to-tmu-blue" },
+  { icon: Users, name: "Faculty of Arts and Social Sciences", color: "from-tmu-gold to-amber-600" },
 ];
 
 const FacultiesSection = () => (
-  <section className="py-20 bg-secondary">
+  <section className="py-20 bg-card">
     <div className="container">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
-          Our <span className="text-tmu-gold">Faculties</span>
+          Faculties at <span className="text-tmu-gold">TMU</span>
         </h2>
-        <p className="text-muted-foreground font-body mt-3 max-w-xl mx-auto">
-          Explore our diverse academic faculties offering world-class programmes
-        </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {faculties.map((faculty, i) => (
           <motion.div
             key={faculty.name}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            transition={{ delay: i * 0.07 }}
           >
             <Link
-              to="/academics"
-              className="block group bg-card rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border h-full"
+              to="/academics#faculties"
+              className="block group bg-background rounded-xl p-6 border hover:shadow-lg transition-all duration-300 h-full"
             >
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${faculty.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                <faculty.icon className="w-7 h-7 text-primary-foreground" />
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${faculty.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                <faculty.icon className="w-6 h-6 text-primary-foreground" />
               </div>
-              <h3 className="font-display font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+              <h3 className="font-display font-semibold text-sm text-foreground group-hover:text-tmu-red transition-colors leading-snug">
                 {faculty.name}
               </h3>
-              <p className="text-sm text-muted-foreground font-body">{faculty.desc}</p>
+              <span className="inline-block mt-3 text-xs font-body font-semibold text-tmu-red opacity-0 group-hover:opacity-100 transition-opacity">
+                About Faculty →
+              </span>
             </Link>
           </motion.div>
         ))}
+      </div>
+      <div className="text-center mt-10">
+        <Link to="/academics" className="text-sm font-body font-semibold text-primary hover:text-tmu-red transition-colors underline underline-offset-4">
+          More About Academics →
+        </Link>
       </div>
     </div>
   </section>
