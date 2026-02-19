@@ -1,20 +1,15 @@
 import Layout from "@/components/Layout";
 import { motion } from "framer-motion";
-import { CheckCircle, FileText, Calendar, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import aerialImg from "@/assets/aerial-tmu.jpg";
+import graduateImg from "@/assets/graduate-students.jpg";
+import undergraduateImg from "@/assets/undergraduate.jpg";
+import postgraduateImg from "@/assets/postgraduate.jpg";
 
-const steps = [
-  { icon: FileText, title: "Check Requirements", desc: "Review entry requirements for your chosen programme." },
-  { icon: Calendar, title: "Apply Online", desc: "Complete the online application form and upload documents." },
-  { icon: CheckCircle, title: "Await Admission", desc: "Track your application status through the student portal." },
-  { icon: Globe, title: "Enroll & Begin", desc: "Complete registration, pay fees, and start your studies." },
-];
-
-const categories = [
-  { title: "Undergraduate", desc: "Bachelor's degree programmes across all faculties. KCSE minimum C+ or equivalent.", tag: "4 Years" },
-  { title: "Postgraduate", desc: "Master's and PhD programmes for advanced research and specialization.", tag: "2-4 Years" },
-  { title: "Diploma & Certificate", desc: "Short-term professional programmes for career advancement.", tag: "1-2 Years" },
-  { title: "International Students", desc: "Programmes open to international applicants with dedicated support.", tag: "All Levels" },
+const stats = [
+  { value: "7", label: "Faculties" },
+  { value: "92", label: "Programmes" },
+  { value: "200+", label: "University Staff" },
 ];
 
 const Admissions = () => (
@@ -23,50 +18,118 @@ const Admissions = () => (
       <div className="container text-center">
         <h1 className="text-4xl md:text-5xl font-display font-bold text-primary-foreground mb-4">Admissions</h1>
         <p className="text-lg text-primary-foreground/80 font-body max-w-2xl mx-auto">
-          Your journey to academic excellence starts here. Apply to Tom Mboya University today.
+          In today's competitive environment, professionals need the skills to adapt to an ever-changing business world.
         </p>
-        <Button size="lg" className="mt-8 bg-tmu-red text-primary-foreground hover:bg-tmu-red/90 font-body font-semibold text-base px-10">
-          Start Your Application
+        <Button asChild size="lg" className="mt-8 bg-tmu-red text-primary-foreground hover:bg-tmu-red/90 font-body font-semibold text-base px-10">
+          <a href="https://apply.tmu.ac.ke/" target="_blank" rel="noopener noreferrer">Click here and join us today!</a>
         </Button>
       </div>
     </section>
 
-    {/* Steps */}
-    <section className="py-16 bg-card">
+    {/* Admission Types */}
+    <section id="undergraduate" className="py-16 bg-card">
+      <div className="container max-w-5xl space-y-12">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <img src={undergraduateImg} alt="Undergraduate Admission" className="rounded-xl shadow-md w-full aspect-video object-cover" />
+          <div>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-4">Undergraduate <span className="text-tmu-gold">Admission</span></h2>
+            <p className="font-body text-muted-foreground leading-relaxed mb-4">
+              Discover a range of undergraduate programs designed to build foundational skills, inspire critical thinking, and prepare students for diverse career paths. Embrace a future shaped by knowledge, opportunity, and transformation.
+            </p>
+            <Button asChild variant="outline" className="font-body">
+              <a href="https://tmu.ac.ke/courses/undergraduate.php" target="_blank" rel="noopener noreferrer">Learn More →</a>
+            </Button>
+          </div>
+        </motion.div>
+
+        <motion.div id="postgraduate" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="order-2 md:order-1">
+            <h2 className="text-2xl font-display font-bold text-foreground mb-4">Postgraduate <span className="text-tmu-gold">Admission</span></h2>
+            <p className="font-body text-muted-foreground leading-relaxed mb-4">
+              Elevate your academic journey with our comprehensive graduate programs designed to deepen expertise, foster innovation, and drive impact in specialized fields. Explore postgraduate opportunities that lead to leadership and advanced knowledge.
+            </p>
+            <Button asChild variant="outline" className="font-body">
+              <a href="https://tmu.ac.ke/courses/post.php" target="_blank" rel="noopener noreferrer">Learn More →</a>
+            </Button>
+          </div>
+          <img src={postgraduateImg} alt="Graduate Admission" className="rounded-xl shadow-md w-full aspect-video object-cover order-1 md:order-2" />
+        </motion.div>
+      </div>
+    </section>
+
+    {/* TMU in Numbers */}
+    <section className="py-12 bg-tmu-gradient">
       <div className="container">
-        <h2 className="text-3xl font-display font-bold text-foreground text-center mb-12">How to <span className="text-tmu-gold">Apply</span></h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step, i) => (
-            <motion.div key={step.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className="text-center p-6 relative">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-tmu-gradient flex items-center justify-center">
-                <step.icon className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <div className="absolute top-6 left-4 w-8 h-8 rounded-full bg-tmu-gold flex items-center justify-center text-sm font-bold font-body text-accent-foreground">
-                {i + 1}
-              </div>
-              <h3 className="font-display font-bold text-foreground mb-2">{step.title}</h3>
-              <p className="text-sm font-body text-muted-foreground">{step.desc}</p>
-            </motion.div>
+        <h2 className="text-2xl font-display font-bold text-primary-foreground text-center mb-8">TMU in Numbers</h2>
+        <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+          {stats.map((s) => (
+            <div key={s.label} className="text-center">
+              <div className="text-4xl font-display font-bold text-tmu-gold">{s.value}</div>
+              <p className="text-sm font-body text-primary-foreground/80">{s.label}</p>
+            </div>
           ))}
         </div>
       </div>
     </section>
 
-    {/* Categories */}
+    {/* Education Space */}
+    <section className="py-16 bg-card">
+      <div className="container max-w-5xl">
+        <h2 className="text-3xl font-display font-bold text-foreground text-center mb-10">TMU in <span className="text-tmu-gold">Education Space</span></h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-xl overflow-hidden border bg-background shadow-sm">
+            <img src={aerialImg} alt="Undergraduate Studies" className="w-full aspect-video object-cover" />
+            <div className="p-6">
+              <h3 className="font-display font-bold text-xl text-foreground mb-2">Undergraduate Studies</h3>
+              <p className="text-sm text-muted-foreground font-body">
+                TMU offers a dynamic range of undergraduate programs designed to build intellectual curiosity, professional competencies, and real-world problem-solving skills across fields such as science, business, arts, technology, and social sciences.
+              </p>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-xl overflow-hidden border bg-background shadow-sm">
+            <img src={graduateImg} alt="Postgraduate Studies" className="w-full aspect-video object-cover" />
+            <div className="p-6">
+              <h3 className="font-display font-bold text-xl text-foreground mb-2">Postgraduate Studies</h3>
+              <p className="text-sm text-muted-foreground font-body">
+                Postgraduate programs at TMU are built for academic excellence, research depth, and global relevance. We offer master's and doctoral degrees that equip scholars to explore complex ideas and generate impactful knowledge.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
+    {/* Admission Stats */}
     <section className="py-16 bg-secondary">
       <div className="container">
-        <h2 className="text-3xl font-display font-bold text-foreground text-center mb-10">Admission <span className="text-tmu-gold">Categories</span></h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {categories.map((cat, i) => (
-            <motion.div key={cat.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-card rounded-xl p-6 border shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-display font-bold text-lg text-foreground">{cat.title}</h3>
-                <span className="text-xs font-body font-semibold px-3 py-1 rounded-full bg-tmu-gold/20 text-accent-foreground">{cat.tag}</span>
-              </div>
-              <p className="text-sm font-body text-muted-foreground">{cat.desc}</p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto text-center">
+          <div>
+            <div className="text-3xl font-display font-bold text-primary">80%</div>
+            <p className="text-sm font-body text-muted-foreground">Employment Rate</p>
+          </div>
+          <div>
+            <div className="text-3xl font-display font-bold text-primary">50+</div>
+            <p className="text-sm font-body text-muted-foreground">Degree Programs</p>
+          </div>
+          <div>
+            <div className="text-3xl font-display font-bold text-primary">1:15</div>
+            <p className="text-sm font-body text-muted-foreground">Faculty Ratio</p>
+          </div>
+          <div>
+            <div className="text-3xl font-display font-bold text-primary">30+</div>
+            <p className="text-sm font-body text-muted-foreground">Counties Represented</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section className="py-16 bg-tmu-gradient">
+      <div className="container text-center">
+        <h2 className="text-3xl font-display font-bold text-primary-foreground mb-4">Ready to begin your TMU journey?</h2>
+        <Button asChild size="lg" className="bg-tmu-red text-primary-foreground hover:bg-tmu-red/90 font-body font-semibold">
+          <a href="https://apply.tmu.ac.ke/" target="_blank" rel="noopener noreferrer">Apply Now</a>
+        </Button>
       </div>
     </section>
   </Layout>

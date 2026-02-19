@@ -1,33 +1,36 @@
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import newsFireAward from "@/assets/news-fire-award.jpg";
 
 const news = [
   {
-    date: "Feb 15, 2026",
-    title: "TMU Launches New Engineering Programme",
-    excerpt: "The university announces a new Bachelor of Engineering programme starting September 2026.",
-    category: "Academic",
+    date: "Jan 14, 2026",
+    title: "FiRe Award 2025",
+    excerpt: "Tom Mboya University has once again affirmed its stature as a trailblazer in public sector accountability after clinching the FiRe Award.",
+    category: "Achievement",
+    image: newsFireAward,
   },
   {
-    date: "Feb 10, 2026",
-    title: "Research Grant Award for Climate Studies",
-    excerpt: "Faculty of Sciences receives KES 50M grant for Lake Victoria climate research.",
-    category: "Research",
+    date: "Jan 14, 2026",
+    title: "MOU Between TMU and Lake Victoria Farms",
+    excerpt: "As part of its commitment to developing skills and capacity in the blue economy, TMU signed a Memorandum of Understanding.",
+    category: "Partnership",
   },
   {
-    date: "Feb 5, 2026",
-    title: "Student Leadership Elections 2026",
-    excerpt: "Annual student government elections scheduled for March. Registration now open.",
-    category: "Campus",
+    date: "Jan 8, 2026",
+    title: "Collaboration Meeting: TMU and CUNY—Lehman College",
+    excerpt: "TMU builds networks with regional partners to support joint initiatives and improve university operations.",
+    category: "International",
   },
 ];
 
 const events = [
-  { date: "Mar 1", title: "Open Day 2026", tag: "Admissions" },
-  { date: "Mar 15", title: "Career Fair", tag: "Students" },
-  { date: "Apr 5", title: "Research Symposium", tag: "Academic" },
-  { date: "Jun 20", title: "Graduation Ceremony", tag: "University" },
+  { date: "Feb 27", title: "Webinar: Beyond Commoditization", tag: "Online", time: "11:30 AM" },
+  { date: "Jul 2", title: "Annual Open Sports Gala", tag: "Homa Bay", time: "8:00 AM" },
+  { date: "Mar 15", title: "Career Fair 2026", tag: "Campus", time: "9:00 AM" },
+  { date: "Jun 20", title: "4th Graduation Ceremony", tag: "University", time: "10:00 AM" },
 ];
 
 const NewsEventsSection = () => (
@@ -38,10 +41,10 @@ const NewsEventsSection = () => (
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-display font-bold text-foreground">
-              Latest <span className="text-tmu-gold">News</span>
+              University <span className="text-tmu-gold">News</span>
             </h2>
-            <Button variant="ghost" className="text-primary font-body gap-1">
-              View All <ArrowRight className="w-4 h-4" />
+            <Button variant="ghost" asChild className="text-primary font-body gap-1">
+              <Link to="/news">View All <ArrowRight className="w-4 h-4" /></Link>
             </Button>
           </div>
           <div className="space-y-6">
@@ -54,10 +57,14 @@ const NewsEventsSection = () => (
                 transition={{ delay: i * 0.1 }}
                 className="group flex gap-6 p-5 rounded-xl border bg-background hover:shadow-md transition-all cursor-pointer"
               >
-                <div className="shrink-0 w-20 h-20 bg-secondary rounded-xl flex flex-col items-center justify-center">
-                  <span className="text-xs text-muted-foreground font-body">{item.date.split(" ")[0]}</span>
-                  <span className="text-2xl font-display font-bold text-primary">{item.date.split(" ")[1].replace(",", "")}</span>
-                </div>
+                {item.image ? (
+                  <img src={item.image} alt={item.title} className="shrink-0 w-24 h-20 object-cover rounded-lg hidden sm:block" />
+                ) : (
+                  <div className="shrink-0 w-24 h-20 bg-secondary rounded-lg hidden sm:flex flex-col items-center justify-center">
+                    <span className="text-xs text-muted-foreground font-body">{item.date.split(" ")[0]}</span>
+                    <span className="text-2xl font-display font-bold text-primary">{item.date.split(" ")[1].replace(",", "")}</span>
+                  </div>
+                )}
                 <div>
                   <span className="inline-block text-xs font-body font-semibold text-tmu-red bg-tmu-red/10 px-2 py-0.5 rounded-full mb-2">
                     {item.category}
@@ -66,6 +73,7 @@ const NewsEventsSection = () => (
                     {item.title}
                   </h3>
                   <p className="text-sm text-muted-foreground font-body mt-1">{item.excerpt}</p>
+                  <span className="text-xs text-muted-foreground font-body mt-2 block">{item.date}</span>
                 </div>
               </motion.article>
             ))}
@@ -95,7 +103,10 @@ const NewsEventsSection = () => (
                   <h4 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
                     {event.title}
                   </h4>
-                  <span className="text-xs text-muted-foreground font-body">{event.tag}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground font-body">{event.tag}</span>
+                    <span className="text-xs text-muted-foreground font-body">• {event.time}</span>
+                  </div>
                 </div>
               </motion.div>
             ))}

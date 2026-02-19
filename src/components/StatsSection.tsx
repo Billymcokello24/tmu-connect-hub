@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import { GraduationCap, Users, BookOpen, Globe } from "lucide-react";
+import { GraduationCap, Users, BookOpen, Building2, Briefcase, Globe } from "lucide-react";
 
 const stats = [
-  { icon: GraduationCap, value: 10000, suffix: "+", label: "Students" },
-  { icon: Users, value: 300, suffix: "+", label: "Academic Staff" },
-  { icon: BookOpen, value: 50, suffix: "+", label: "Programmes" },
-  { icon: Globe, value: 4, suffix: "", label: "Faculties" },
+  { icon: GraduationCap, value: 5000, suffix: "+", label: "Students" },
+  { icon: Users, value: 200, suffix: "+", label: "University Staff" },
+  { icon: BookOpen, value: 92, suffix: "", label: "Programmes" },
+  { icon: Building2, value: 7, suffix: "", label: "Faculties" },
+  { icon: Briefcase, value: 80, suffix: "%", label: "Employment Rate" },
+  { icon: Globe, value: 30, suffix: "+", label: "Counties Represented" },
 ];
 
 const Counter = ({ target, suffix }: { target: number; suffix: string }) => {
@@ -51,17 +53,17 @@ const StatsSection = () => (
     <div className="container">
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
-          University at a <span className="text-tmu-gold">Glance</span>
+          TMU at a <span className="text-tmu-gold">Glance</span>
         </h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
         {stats.map((stat) => (
           <div key={stat.label} className="text-center group">
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-secondary flex items-center justify-center group-hover:bg-tmu-gold/20 transition-colors">
               <stat.icon className="w-8 h-8 text-primary group-hover:text-tmu-gold transition-colors" />
             </div>
             <Counter target={stat.value} suffix={stat.suffix} />
-            <p className="text-muted-foreground font-body mt-1">{stat.label}</p>
+            <p className="text-muted-foreground font-body mt-1 text-sm">{stat.label}</p>
           </div>
         ))}
       </div>
